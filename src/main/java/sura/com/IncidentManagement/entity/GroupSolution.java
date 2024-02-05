@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group {
+public class GroupSolution {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

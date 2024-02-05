@@ -6,19 +6,19 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sura.com.IncidentManagement.dto.GroupDTO;
-import sura.com.IncidentManagement.entity.Group;
+import sura.com.IncidentManagement.dto.GroupSolutionDTO;
+import sura.com.IncidentManagement.entity.GroupSolution;
 import sura.com.IncidentManagement.mapper.MyMapper;
-import sura.com.IncidentManagement.repo.GroupRepo;
+import sura.com.IncidentManagement.repo.GroupSolutionRepo;
 
 @Service
-public class GroupService {
+public class GroupSolutionService {
     
     @Autowired
-    GroupRepo groupRepo;
+    GroupSolutionRepo groupRepo;
 
-    public List<GroupDTO> findAll() {
-        List<Group> groups = groupRepo.findAll();
+    public List<GroupSolutionDTO> findAll() {
+        List<GroupSolution> groups = groupRepo.findAll();
         return groups.stream().map(MyMapper.INSTANCE::mapGroupToGroupDTO)
                 .collect(Collectors.toList());
     }

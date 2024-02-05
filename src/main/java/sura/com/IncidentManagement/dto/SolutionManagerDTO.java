@@ -14,5 +14,5 @@ public class SolutionManagerDTO {
 
     private String name;
 
-    private List<GroupDTO> groups;
+    private List<GroupSolutionDTO> groups;
 }

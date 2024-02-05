@@ -28,7 +28,7 @@ public class Analyst {
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
-    private Group group;
+    private GroupSolution group;
 
     @OneToMany(mappedBy = "analyst", cascade = CascadeType.ALL)
     private List<Incident> incidents;

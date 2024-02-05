@@ -8,7 +8,7 @@ import sura.com.IncidentManagement.dto.AnalystDTO;
 import sura.com.IncidentManagement.dto.ApplicationDTO;
 import sura.com.IncidentManagement.dto.CauseErrorDTO;
 import sura.com.IncidentManagement.dto.ClusteredErrorDTO;
-import sura.com.IncidentManagement.dto.GroupDTO;
+import sura.com.IncidentManagement.dto.GroupSolutionDTO;
 import sura.com.IncidentManagement.dto.IncidentDTO;
 import sura.com.IncidentManagement.dto.SolutionManagerDTO;
 import sura.com.IncidentManagement.dto.StateRaizalDTO;
@@ -17,7 +17,7 @@ import sura.com.IncidentManagement.entity.Analyst;
 import sura.com.IncidentManagement.entity.Application;
 import sura.com.IncidentManagement.entity.CauseError;
 import sura.com.IncidentManagement.entity.ClusteredError;
-import sura.com.IncidentManagement.entity.Group;
+import sura.com.IncidentManagement.entity.GroupSolution;
 import sura.com.IncidentManagement.entity.Incident;
 import sura.com.IncidentManagement.entity.SolutionManager;
 import sura.com.IncidentManagement.entity.StateRaizal;
@@ -58,7 +58,7 @@ public interface MyMapper {
 
         StateRaizalDTO mapStateRaizalToStateRaizalDTO(StateRaizal stateRaizal);
 
-        Group maGroupDTOToGroup(GroupDTO groupDTO);
+        GroupSolution maGroupDTOToGroup(GroupSolutionDTO groupDTO);
 
-        GroupDTO mapGroupToGroupDTO(Group group);
+        GroupSolutionDTO mapGroupToGroupDTO(GroupSolution group);
 }

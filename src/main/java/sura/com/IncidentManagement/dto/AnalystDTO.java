@@ -16,7 +16,7 @@ public class AnalystDTO {
 
     private String email;
 
-    private GroupDTO group;
+    private GroupSolutionDTO group;
 
     private List<IncidentDTO> incidents;
 }

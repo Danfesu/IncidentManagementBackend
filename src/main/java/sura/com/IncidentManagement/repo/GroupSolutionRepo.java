@@ -3,9 +3,9 @@ package sura.com.IncidentManagement.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import sura.com.IncidentManagement.entity.Group;
+import sura.com.IncidentManagement.entity.GroupSolution;
 
 @Repository
-public interface GroupRepor extends JpaRepository<Group, Long> {
+public interface GroupSolutionRepo extends JpaRepository<GroupSolution, Long> {
     
 }
