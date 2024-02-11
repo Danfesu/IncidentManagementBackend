@@ -26,6 +26,8 @@ public class Incident {
 
     private String solution;
 
+    private String hu_raizal;
+
     private boolean confirmed_operability;
 
     private String access_oc;
@@ -49,4 +51,8 @@ public class Incident {
     @ManyToOne
     @JoinColumn(name = "state_raizal_id", nullable = false)
     private StateRaizal stateRaizal;
+
+    public String getComfirmedOperability(){
+        return confirmed_operability?"SI":"NO";
+    }
 }

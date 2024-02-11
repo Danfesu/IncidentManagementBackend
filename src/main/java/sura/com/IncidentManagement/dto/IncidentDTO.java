@@ -22,6 +22,10 @@ public class IncidentDTO {
 
     private String access_oc;
 
+    private String application;
+
+    private String hu_raizal;
+
     private ClusteredErrorDTO clusteredError;
 
     private CauseErrorDTO causeError;

@@ -1,6 +1,5 @@
 package sura.com.IncidentManagement.dto;
 
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +13,4 @@ public class CauseErrorDTO {
 
     private String description;
 
-    private List<IncidentDTO> incidents;
 }

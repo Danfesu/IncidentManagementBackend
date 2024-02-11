@@ -16,7 +16,6 @@ public class AnalystDTO {
 
     private String email;
 
-    private GroupSolutionDTO group;
+    private Long group_id;
 
-    private List<IncidentDTO> incidents;
 }

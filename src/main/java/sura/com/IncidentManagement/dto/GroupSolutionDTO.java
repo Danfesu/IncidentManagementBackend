@@ -14,7 +14,7 @@ public class GroupSolutionDTO {
 
     private String name;
 
-    private SolutionManagerDTO solutionManager;
+    private Long solutionManagerId;
 
     private List<AnalystDTO> analysts;
 }
