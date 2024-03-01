@@ -1,11 +1,13 @@
 package sura.com.IncidentManagement.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +70,14 @@ public class IncidentService {
                                   "* OC Acceso a PDN - (PAM): " + incident.get().getAccess_oc() + " |";
 
         return solutionTemplate;
+    }
+
+
+    public List<Object[]> getAmountIncidentsPerDay(LocalDate startDate, LocalDate endDate){
+        return incidentRepo.countByDate(startDate, endDate);
+    }
+
+    public List<Object[]> getAmountIncidentsPerApp(LocalDate startDate, LocalDate endDate){
+        return incidentRepo.countByApp(startDate, endDate);
     }
 }

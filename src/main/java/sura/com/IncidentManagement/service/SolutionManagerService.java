@@ -1,9 +1,11 @@
 package sura.com.IncidentManagement.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import sura.com.IncidentManagement.dto.SolutionManagerDTO;
@@ -21,5 +23,10 @@ public class SolutionManagerService {
         List<SolutionManager> solutionManagers = solutionManagerRepo.findAll();
         return solutionManagers.stream().map(MyMapper.INSTANCE::mapSolutionManagerToSolutionManagerDTO)
                 .collect(Collectors.toList());
+    }
+
+    public String findById(@NonNull Long id) {
+        Optional<SolutionManager> application = solutionManagerRepo.findById(id);
+        return application.get().getName();
     }
 }

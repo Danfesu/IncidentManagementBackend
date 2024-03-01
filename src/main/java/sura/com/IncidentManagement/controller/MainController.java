@@ -1,8 +1,11 @@
 package sura.com.IncidentManagement.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import sura.com.IncidentManagement.dto.ActionExecutedDTO;
@@ -77,6 +81,18 @@ public class MainController {
     @GetMapping("/fetchAllIncidents")
     public ResponseEntity<List<IncidentDTO>> fetchAllIncidents(){
         return new ResponseEntity<List<IncidentDTO>>(incidentService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/fetchAmountIncidentsPerDay")
+    public ResponseEntity<List<Object[]>> fetchIncidentsPerDay(@RequestParam String startDate, @RequestParam String endDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return new ResponseEntity<List<Object[]>>(incidentService.getAmountIncidentsPerDay(LocalDate.parse(startDate, formatter), LocalDate.parse(endDate, formatter)), HttpStatus.OK);
+    }
+
+    @GetMapping("/fetchAmountIncidentsPerApp")
+    public ResponseEntity<List<Object[]>> fetchIncidentsPerApp(@RequestParam String startDate, @RequestParam String endDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return new ResponseEntity<List<Object[]>>(incidentService.getAmountIncidentsPerApp(LocalDate.parse(startDate, formatter), LocalDate.parse(endDate, formatter)), HttpStatus.OK);
     }
 
     @PostMapping("/saveIncident")
