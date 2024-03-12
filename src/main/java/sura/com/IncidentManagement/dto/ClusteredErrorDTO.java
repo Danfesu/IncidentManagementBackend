@@ -1,17 +1,20 @@
 package sura.com.IncidentManagement.dto;
 
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class ClusteredErrorDTO {
     private Long id;
 
     private String description;
 
     private Long application_id;
+
+    public ClusteredErrorDTO(Long id, String description, Long application_id) {
+        this.id = id;
+        this.description = description;
+        this.application_id = application_id;
+    }
+
+    public ClusteredErrorDTO() {
+    }
 
     public Long getId() {
         return id;

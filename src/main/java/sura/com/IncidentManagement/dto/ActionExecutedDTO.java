@@ -1,14 +1,16 @@
 package sura.com.IncidentManagement.dto;
 
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class ActionExecutedDTO {
     private Long id;
     private String description;
+
+    public ActionExecutedDTO(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
+    public ActionExecutedDTO() {
+    }
 
     public Long getId(){
         return id;

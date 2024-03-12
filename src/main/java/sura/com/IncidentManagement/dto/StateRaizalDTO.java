@@ -1,14 +1,17 @@
 package sura.com.IncidentManagement.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class StateRaizalDTO {
     private Long id;
 
     private String type;
+
+    public StateRaizalDTO() {
+    }
+
+    public StateRaizalDTO(Long id, String type) {
+        this.id = id;
+        this.type = type;
+    }
 
     public Long getId() {
         return id;

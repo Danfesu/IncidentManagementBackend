@@ -1,15 +1,17 @@
 package sura.com.IncidentManagement.dto;
 
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class CauseErrorDTO {
     private Long id;
 
     private String description;
+
+    public CauseErrorDTO() {
+    }
+
+    public CauseErrorDTO(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

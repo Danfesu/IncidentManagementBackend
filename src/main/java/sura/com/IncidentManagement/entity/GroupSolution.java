@@ -11,13 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class GroupSolution {
@@ -35,11 +31,37 @@ public class GroupSolution {
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Analyst> analysts;
 
-    public String getName(){
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public SolutionManager getSolutionManager(){
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public SolutionManager getSolutionManager() {
         return solutionManager;
     }
+
+    public void setSolutionManager(SolutionManager solutionManager) {
+        this.solutionManager = solutionManager;
+    }
+
+    public List<Analyst> getAnalysts() {
+        return analysts;
+    }
+
+    public void setAnalysts(List<Analyst> analysts) {
+        this.analysts = analysts;
+    }
+
+    
 }

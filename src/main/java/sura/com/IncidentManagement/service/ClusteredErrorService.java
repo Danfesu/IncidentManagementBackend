@@ -23,6 +23,7 @@ public class ClusteredErrorService {
 
     public List<ClusteredErrorDTO> findAll() {
         List<ClusteredError> clusteredErrors = clusteredErrorRepo.findAll();
+
         return clusteredErrors.stream()
                 .map(clusteredError -> myMapper.mapClusteredErrorToClusteredErrorDTO(clusteredError))
                 .collect(Collectors.toList());

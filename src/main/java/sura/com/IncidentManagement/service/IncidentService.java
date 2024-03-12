@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import sura.com.IncidentManagement.dto.AnalystDTO;
 import sura.com.IncidentManagement.dto.IncidentDTO;
 import sura.com.IncidentManagement.entity.ClusteredError;
 import sura.com.IncidentManagement.entity.Incident;
@@ -39,6 +40,9 @@ public class IncidentService {
         
         for(int i = 0; i < incidents.size(); i++){
             incidentDTOs.get(i).setApplication(incidents.get(i).getClusteredError().getApplication().getName());
+            incidentDTOs.get(i).setId(incidents.get(i).getId());
+            incidentDTOs.get(i).setDate(incidents.get(i).getDate());
+            incidentDTOs.get(i).setAnalyst(new AnalystDTO(incidents.get(i).getAnalyst().getId(), incidents.get(i).getAnalyst().getName(), incidents.get(i).getAnalyst().getEmail(), incidents.get(i).getAnalyst().getGroup().getId()));
         }
         
         return incidentDTOs;

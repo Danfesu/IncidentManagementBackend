@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sura.com.IncidentManagement.dto.CauseErrorDTO;
+import sura.com.IncidentManagement.dto.StateRaizalDTO;
 import sura.com.IncidentManagement.entity.CauseError;
 import sura.com.IncidentManagement.mapper.MyMapper;
 import sura.com.IncidentManagement.repo.CauseErrorRepo;
@@ -22,8 +23,15 @@ public class CauseErrorService {
 
     public List<CauseErrorDTO> findAll() {
         List<CauseError> causeErrors = causeErrorRepo.findAll();
-        return causeErrors.stream()
-                .map(causeError -> myMapper.mapCauseErrorToCauseErrorDTO(causeError))
-                .collect(Collectors.toList());
+
+        List<CauseErrorDTO> dtos = causeErrors.stream()
+        .map(causeError -> myMapper.mapCauseErrorToCauseErrorDTO(causeError))
+        .collect(Collectors.toList());
+
+        for(int i = 0; i < causeErrors.size(); i++){
+            dtos.get(i).setId(causeErrors.get(i).getId());
+        }
+
+        return dtos;
     }
 }

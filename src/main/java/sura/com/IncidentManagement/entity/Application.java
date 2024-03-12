@@ -9,13 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Application {
@@ -29,7 +25,29 @@ public class Application {
     @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
     private List<ClusteredError> clusteredErrors;
 
-    public String getName(){
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<ClusteredError> getClusteredErrors() {
+        return clusteredErrors;
+    }
+
+    public void setClusteredErrors(List<ClusteredError> clusteredErrors) {
+        this.clusteredErrors = clusteredErrors;
+    }
+
+    
 }

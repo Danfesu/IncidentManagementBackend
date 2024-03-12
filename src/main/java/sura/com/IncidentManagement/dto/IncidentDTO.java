@@ -2,11 +2,6 @@ package sura.com.IncidentManagement.dto;
 
 import java.time.LocalDate;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class IncidentDTO {
     private Long id;
 
@@ -34,6 +29,28 @@ public class IncidentDTO {
 
     private StateRaizalDTO stateRaizal;
 
+
+    public IncidentDTO(Long id, String diagnosis, LocalDate date, String solution, boolean confirmed_operability,
+            String access_oc, String application, String hu_raizal, ClusteredErrorDTO clusteredError,
+            CauseErrorDTO causeError, ActionExecutedDTO actionExecuted, AnalystDTO analyst,
+            StateRaizalDTO stateRaizal) {
+        this.id = id;
+        this.diagnosis = diagnosis;
+        this.date = date;
+        this.solution = solution;
+        this.confirmed_operability = confirmed_operability;
+        this.access_oc = access_oc;
+        this.application = application;
+        this.hu_raizal = hu_raizal;
+        this.clusteredError = clusteredError;
+        this.causeError = causeError;
+        this.actionExecuted = actionExecuted;
+        this.analyst = analyst;
+        this.stateRaizal = stateRaizal;
+    }
+
+    public IncidentDTO() {
+    }
 
     public void setApplication(String application){
         this.application = application;

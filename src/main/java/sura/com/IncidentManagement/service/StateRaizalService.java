@@ -1,5 +1,6 @@
 package sura.com.IncidentManagement.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +23,15 @@ public class StateRaizalService {
 
     public List<StateRaizalDTO> findAll() {
         List<StateRaizal> stateRaizals = stateRaizalRepo.findAll();
-        return stateRaizals.stream()
-            .map(stateRaizal -> myMapper.mapStateRaizalToStateRaizalDTO(stateRaizal))
-            .collect(Collectors.toList());
+
+        List<StateRaizalDTO> dtos = stateRaizals.stream()
+        .map(stateRaizal -> myMapper.mapStateRaizalToStateRaizalDTO(stateRaizal))
+        .collect(Collectors.toList());
+
+        for(int i = 0; i < stateRaizals.size(); i++){
+            dtos.get(i).setId(stateRaizals.get(i).getId());
+        }
+
+        return dtos;
     }
 }

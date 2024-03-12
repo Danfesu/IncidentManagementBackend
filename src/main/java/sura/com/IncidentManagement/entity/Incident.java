@@ -92,4 +92,12 @@ public class Incident {
         return access_oc;
     }
 
+    public LocalDate getDate(){
+        return date;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
 }

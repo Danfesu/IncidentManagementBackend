@@ -2,17 +2,21 @@ package sura.com.IncidentManagement.dto;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class SolutionManagerDTO {
     private Long id;
 
     private String name;
 
     private List<GroupSolutionDTO> groups;
+
+    public SolutionManagerDTO(Long id, String name, List<GroupSolutionDTO> groups) {
+        this.id = id;
+        this.name = name;
+        this.groups = groups;
+    }
+
+    public SolutionManagerDTO() {
+    }
 
     public Long getId() {
         return id;

@@ -1,12 +1,17 @@
 package sura.com.IncidentManagement.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class AnalystDTO {
+
+    public AnalystDTO(Long id, String name, String email, Long group_id) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.group_id = group_id;
+    }
+
+    public AnalystDTO(){
+    }
+
     private Long id;
 
     private String name;

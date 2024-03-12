@@ -2,17 +2,22 @@ package sura.com.IncidentManagement.dto;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 public class ApplicationDTO {
     private Long id;
 
     private String name;
 
     private List<ClusteredErrorDTO> clusteredErrors;
+    
+    public ApplicationDTO(Long id, String name, List<ClusteredErrorDTO> clusteredErrors) {
+        this.id = id;
+        this.name = name;
+        this.clusteredErrors = clusteredErrors;
+    }
+
+    public ApplicationDTO() {
+    }
 
     public Long getId() {
         return id;

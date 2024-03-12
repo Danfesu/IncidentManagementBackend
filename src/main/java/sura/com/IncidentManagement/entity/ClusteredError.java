@@ -11,13 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClusteredError {
@@ -34,17 +30,39 @@ public class ClusteredError {
     @OneToMany(mappedBy = "clusteredError", cascade = CascadeType.ALL)
     private List<Incident> incidents;
 
-    public Application getApplication(){
-        return application;
-    }
-
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
-    public String getDescription(){
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
         return description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+
+    public List<Incident> getIncidents() {
+        return incidents;
+    }
+
+    public void setIncidents(List<Incident> incidents) {
+        this.incidents = incidents;
+    }
+
+    
 
     
 
