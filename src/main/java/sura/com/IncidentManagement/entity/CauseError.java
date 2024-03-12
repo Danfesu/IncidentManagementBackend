@@ -28,4 +28,9 @@ public class CauseError {
 
     @OneToMany(mappedBy = "causeError", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public String getDescription(){
+        return description;
+    }
+
 }

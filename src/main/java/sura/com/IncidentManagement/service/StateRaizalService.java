@@ -17,9 +17,13 @@ public class StateRaizalService {
     @Autowired
     StateRaizalRepo stateRaizalRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<StateRaizalDTO> findAll() {
         List<StateRaizal> stateRaizals = stateRaizalRepo.findAll();
-        return stateRaizals.stream().map(MyMapper.INSTANCE::mapStateRaizalToStateRaizalDTO)
-                .collect(Collectors.toList());
+        return stateRaizals.stream()
+            .map(stateRaizal -> myMapper.mapStateRaizalToStateRaizalDTO(stateRaizal))
+            .collect(Collectors.toList());
     }
 }

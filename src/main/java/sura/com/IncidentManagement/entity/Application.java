@@ -28,4 +28,8 @@ public class Application {
 
     @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
     private List<ClusteredError> clusteredErrors;
+
+    public String getName(){
+        return name;
+    }
 }

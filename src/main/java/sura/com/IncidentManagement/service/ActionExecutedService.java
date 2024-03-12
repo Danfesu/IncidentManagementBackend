@@ -17,9 +17,13 @@ public class ActionExecutedService {
     @Autowired
     ActionExecutedRepo actionExecutedRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<ActionExecutedDTO> findAll() {
         List<ActionExecuted> actionExecuteds = actionExecutedRepo.findAll();
-        return actionExecuteds.stream().map(MyMapper.INSTANCE::mapActionExecutedToActionExecutedDTO)
+        return actionExecuteds.stream()
+                .map(actionExecuted -> myMapper.mapActionExecutedToActionExecutedDTO(actionExecuted))
                 .collect(Collectors.toList());
     }
 }

@@ -32,4 +32,8 @@ public class Analyst {
 
     @OneToMany(mappedBy = "analyst", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public GroupSolution getGroup(){
+        return group;
+    }
 }

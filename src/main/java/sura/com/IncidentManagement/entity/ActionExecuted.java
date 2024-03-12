@@ -27,4 +27,8 @@ public class ActionExecuted {
 
     @OneToMany(mappedBy = "actionExecuted", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public String getDescription(){
+        return description;
+    }
 }

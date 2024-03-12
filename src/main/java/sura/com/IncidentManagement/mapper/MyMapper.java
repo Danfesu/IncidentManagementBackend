@@ -1,117 +1,91 @@
 package sura.com.IncidentManagement.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
+import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.stereotype.Component;
+import sura.com.IncidentManagement.dto.*;
+import sura.com.IncidentManagement.entity.*;
 
-import sura.com.IncidentManagement.dto.ActionExecutedDTO;
-import sura.com.IncidentManagement.dto.AnalystDTO;
-import sura.com.IncidentManagement.dto.ApplicationDTO;
-import sura.com.IncidentManagement.dto.CauseErrorDTO;
-import sura.com.IncidentManagement.dto.ClusteredErrorDTO;
-import sura.com.IncidentManagement.dto.GroupSolutionDTO;
-import sura.com.IncidentManagement.dto.IncidentDTO;
-import sura.com.IncidentManagement.dto.SolutionManagerDTO;
-import sura.com.IncidentManagement.dto.StateRaizalDTO;
-import sura.com.IncidentManagement.entity.ActionExecuted;
-import sura.com.IncidentManagement.entity.Analyst;
-import sura.com.IncidentManagement.entity.Application;
-import sura.com.IncidentManagement.entity.CauseError;
-import sura.com.IncidentManagement.entity.ClusteredError;
-import sura.com.IncidentManagement.entity.GroupSolution;
-import sura.com.IncidentManagement.entity.Incident;
-import sura.com.IncidentManagement.entity.SolutionManager;
-import sura.com.IncidentManagement.entity.StateRaizal;
+@Component
+public class MyMapper {
 
-@Mapper
-public interface MyMapper {
-        public static final MyMapper INSTANCE = Mappers.getMapper(MyMapper.class);
+    private final ModelMapper modelMapper;
 
-        @Mapping(target = "incidents", ignore = true)
-        ActionExecuted mapActionExecutedDTOToActionExecuted(ActionExecutedDTO actionExecutedDTO);
+    public MyMapper() {
+        this.modelMapper = new ModelMapper();
+        this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+    }
 
-        ActionExecutedDTO mapActionExecutedToActionExecutedDTO(ActionExecuted actionExecuted);
+    public ActionExecuted mapActionExecutedDTOToActionExecuted(ActionExecutedDTO actionExecutedDTO) {
+        return modelMapper.map(actionExecutedDTO, ActionExecuted.class);
+    }
 
-        default GroupSolution mapGroupSolution(Long groupId) {
-                if (groupId == null) {
-                    return null;
-                }
-        
-                GroupSolution groupSolution = new GroupSolution();
-                groupSolution.setId(groupId);
-                // Puedes cargar más detalles del GroupSolution si es necesario
-        
-                return groupSolution;
-        }
-        
-        @Mappings({
-            @Mapping(target = "incidents", ignore = true),
-            @Mapping(target = "group", source = "group_id")
-        })
-        Analyst mapAnalystDTOToAnalyst(AnalystDTO analystDTO);
+    public ActionExecutedDTO mapActionExecutedToActionExecutedDTO(ActionExecuted actionExecuted) {
+        return modelMapper.map(actionExecuted, ActionExecutedDTO.class);
+    }
 
-        @Mapping(target = "group_id", source = "group.id")
-        AnalystDTO mapAnalystToAnalystDTO(Analyst analyst);
+    public Analyst mapAnalystDTOToAnalyst(AnalystDTO analystDTO) {
+        return modelMapper.map(analystDTO, Analyst.class);
+    }
 
-        Application mapApplicationDTOToApplication(ApplicationDTO applicationDTO);
+    public AnalystDTO mapAnalystToAnalystDTO(Analyst analyst) {
+        return modelMapper.map(analyst, AnalystDTO.class);
+    }
 
-        ApplicationDTO mapApplicationToApplicationDTO(Application application);
+    public Application mapApplicationDTOToApplication(ApplicationDTO applicationDTO) {
+        return modelMapper.map(applicationDTO, Application.class);
+    }
 
-        @Mapping(target = "incidents", ignore = true)
-        CauseError mapCauseErrorDTOToCauseError(CauseErrorDTO causeErrorDTO);
+    public ApplicationDTO mapApplicationToApplicationDTO(Application application) {
+        return modelMapper.map(application, ApplicationDTO.class);
+    }
 
-        CauseErrorDTO mapCauseErrorToCauseErrorDTO(CauseError causeError);
+    public CauseError mapCauseErrorDTOToCauseError(CauseErrorDTO causeErrorDTO) {
+        return modelMapper.map(causeErrorDTO, CauseError.class);
+    }
 
-        default Application mapApplication(Long applicationId) {
-                if (applicationId == null) {
-                    return null;
-                }
-        
-                Application application = new Application();
-                application.setId(applicationId);
-                // Puedes cargar más detalles del GroupSolution si es necesario
-        
-                return application;
-        }
+    public CauseErrorDTO mapCauseErrorToCauseErrorDTO(CauseError causeError) {
+        return modelMapper.map(causeError, CauseErrorDTO.class);
+    }
 
-        @Mappings({
-                @Mapping(target = "incidents", ignore = true),
-                @Mapping(target = "application", source = "application_id")
-        })
-        ClusteredError mapClusteredErrorDTOToCaClusteredError(ClusteredErrorDTO clusteredErrorDTO);
+    public ClusteredError mapClusteredErrorDTOToClusteredError(ClusteredErrorDTO clusteredErrorDTO) {
+        return modelMapper.map(clusteredErrorDTO, ClusteredError.class);
+    }
 
-        @Mapping(target = "application_id", source = "application.id")
-        ClusteredErrorDTO mapClusteredErrorToClusteredErrorDTO(ClusteredError clusteredError);
+    public ClusteredErrorDTO mapClusteredErrorToClusteredErrorDTO(ClusteredError clusteredError) {
+        return modelMapper.map(clusteredError, ClusteredErrorDTO.class);
+    }
 
-        Incident mapIncidentDTOToIncident(IncidentDTO incidentDTO);
+    public Incident mapIncidentDTOToIncident(IncidentDTO incidentDTO) {
+        return modelMapper.map(incidentDTO, Incident.class);
+    }
 
-        IncidentDTO mapIncidentToIncidentDTO(Incident incident);
+    public IncidentDTO mapIncidentToIncidentDTO(Incident incident) {
+        return modelMapper.map(incident, IncidentDTO.class);
+    }
 
-        SolutionManager mapSolutionManagerDTOToSolutionManager(SolutionManagerDTO solutionManagerDTO);
+    public SolutionManager mapSolutionManagerDTOToSolutionManager(SolutionManagerDTO solutionManagerDTO) {
+        return modelMapper.map(solutionManagerDTO, SolutionManager.class);
+    }
 
-        SolutionManagerDTO mapSolutionManagerToSolutionManagerDTO(SolutionManager solutionManager);
+    public SolutionManagerDTO mapSolutionManagerToSolutionManagerDTO(SolutionManager solutionManager) {
+        return modelMapper.map(solutionManager, SolutionManagerDTO.class);
+    }
 
-        @Mapping(target = "incidents", ignore = true)
-        StateRaizal mapStateRaizalDTOToStateRaizal(StateRaizalDTO stateRaizalDTO);
+    public StateRaizal mapStateRaizalDTOToStateRaizal(StateRaizalDTO stateRaizalDTO) {
+        return modelMapper.map(stateRaizalDTO, StateRaizal.class);
+    }
 
-        StateRaizalDTO mapStateRaizalToStateRaizalDTO(StateRaizal stateRaizal);
-        
-        default SolutionManager mapSolutionManager(Long solutionManagerId) {
-                if (solutionManagerId == null) {
-                    return null;
-                }
-        
-                SolutionManager solutionManager = new SolutionManager();
-                solutionManager.setId(solutionManagerId);
-                // Puedes cargar más detalles del GroupSolution si es necesario
-        
-                return solutionManager;
-        }
+    public StateRaizalDTO mapStateRaizalToStateRaizalDTO(StateRaizal stateRaizal) {
+        return modelMapper.map(stateRaizal, StateRaizalDTO.class);
+    }
 
-        @Mapping(target = "solutionManager", source = "solutionManagerId")
-        GroupSolution mapGroupDTOToGroup(GroupSolutionDTO groupDTO);
+    public GroupSolution mapGroupDTOToGroup(GroupSolutionDTO groupDTO) {
+        return modelMapper.map(groupDTO, GroupSolution.class);
+    }
 
-        @Mapping(target = "solutionManagerId", source = "solutionManager.id")
-        GroupSolutionDTO mapGroupToGroupDTO(GroupSolution group);
+    public GroupSolutionDTO mapGroupToGroupDTO(GroupSolution group) {
+        return modelMapper.map(group, GroupSolutionDTO.class);
+    }
 }

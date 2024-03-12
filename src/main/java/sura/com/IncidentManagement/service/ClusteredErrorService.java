@@ -18,13 +18,17 @@ public class ClusteredErrorService {
     @Autowired
     ClusteredErrorRepo clusteredErrorRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<ClusteredErrorDTO> findAll() {
         List<ClusteredError> clusteredErrors = clusteredErrorRepo.findAll();
-        return clusteredErrors.stream().map(MyMapper.INSTANCE::mapClusteredErrorToClusteredErrorDTO)
+        return clusteredErrors.stream()
+                .map(clusteredError -> myMapper.mapClusteredErrorToClusteredErrorDTO(clusteredError))
                 .collect(Collectors.toList());
     }
 
     public ClusteredErrorDTO save(@NonNull ClusteredError clusteredError) {
-        return MyMapper.INSTANCE.mapClusteredErrorToClusteredErrorDTO(clusteredErrorRepo.save(clusteredError));
+        return myMapper.mapClusteredErrorToClusteredErrorDTO(clusteredErrorRepo.save(clusteredError));
     }
 }

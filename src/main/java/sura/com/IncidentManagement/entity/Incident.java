@@ -55,4 +55,41 @@ public class Incident {
     public String getComfirmedOperability(){
         return confirmed_operability?"SI":"NO";
     }
+
+    public ClusteredError getClusteredError(){
+        return clusteredError;
+    }
+
+    public CauseError getCauseError(){
+        return causeError;
+    }
+
+    public String getHu_raizal(){
+        return hu_raizal;
+    }
+
+    public StateRaizal getStateRaizal(){
+        return stateRaizal;
+    }
+
+    public Analyst getAnalyst(){
+        return analyst;
+    }
+
+    public String getDiagnosis(){
+        return diagnosis;
+    }
+
+    public ActionExecuted getActionExecuted(){
+        return actionExecuted;
+    }
+
+    public String getSolution(){
+        return solution;
+    }
+
+    public String getAccess_oc(){
+        return access_oc;
+    }
+
 }

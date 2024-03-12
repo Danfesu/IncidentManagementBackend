@@ -27,4 +27,8 @@ public class StateRaizal {
 
     @OneToMany(mappedBy = "stateRaizal", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public String getType(){
+        return type;
+    }
 }

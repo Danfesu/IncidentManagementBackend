@@ -33,4 +33,19 @@ public class ClusteredError {
 
     @OneToMany(mappedBy = "clusteredError", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public Application getApplication(){
+        return application;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    
+
 }

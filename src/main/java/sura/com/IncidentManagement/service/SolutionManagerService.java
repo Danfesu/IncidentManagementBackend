@@ -19,14 +19,18 @@ public class SolutionManagerService {
     @Autowired
     SolutionManagerRepo solutionManagerRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<SolutionManagerDTO> findAll() {
         List<SolutionManager> solutionManagers = solutionManagerRepo.findAll();
-        return solutionManagers.stream().map(MyMapper.INSTANCE::mapSolutionManagerToSolutionManagerDTO)
-                .collect(Collectors.toList());
+        return solutionManagers.stream()
+            .map(solutionManager -> myMapper.mapSolutionManagerToSolutionManagerDTO(solutionManager))
+            .collect(Collectors.toList());
     }
 
     public String findById(@NonNull Long id) {
-        Optional<SolutionManager> application = solutionManagerRepo.findById(id);
-        return application.get().getName();
+        Optional<SolutionManager> solution = solutionManagerRepo.findById(id);
+        return solution.get().getName();
     }
 }

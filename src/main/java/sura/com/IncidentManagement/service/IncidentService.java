@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -30,18 +28,24 @@ public class IncidentService {
     @Autowired
     ApplicationService applicationService;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<IncidentDTO> findAll() {
         List<Incident> incidents = incidentRepo.findAll();
-        List<IncidentDTO> incidentDTOs = incidents.stream().map(MyMapper.INSTANCE::mapIncidentToIncidentDTO)
-        .collect(Collectors.toList());
-        for (IncidentDTO incidentDTO : incidentDTOs) {
-            incidentDTO.setApplication(applicationService.findById(incidentDTO.getClusteredError().getApplication_id()));
+        List<IncidentDTO> incidentDTOs = incidents.stream()
+                .map(incident -> myMapper.mapIncidentToIncidentDTO(incident))
+                .collect(Collectors.toList());
+        
+        for(int i = 0; i < incidents.size(); i++){
+            incidentDTOs.get(i).setApplication(incidents.get(i).getClusteredError().getApplication().getName());
         }
+        
         return incidentDTOs;
     }
 
-    public IncidentDTO save(@NonNull IncidentDTO incidentdDTO) {
-        Incident incident = MyMapper.INSTANCE.mapIncidentDTOToIncident(incidentdDTO);
+    public IncidentDTO save(IncidentDTO incidentDTO) {
+        Incident incident = myMapper.mapIncidentDTOToIncident(incidentDTO);
 
         Long clusteredErrorId = incident.getClusteredError().getId();
 
@@ -50,7 +54,7 @@ public class IncidentService {
             clusteredErrorRepo.save(clusteredError);
         }
 
-        return MyMapper.INSTANCE.mapIncidentToIncidentDTO(incidentRepo.save(incident));
+        return myMapper.mapIncidentToIncidentDTO(incidentRepo.save(incident));
     }
 
 

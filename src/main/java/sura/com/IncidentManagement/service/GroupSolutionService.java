@@ -19,14 +19,19 @@ public class GroupSolutionService {
     @Autowired
     GroupSolutionRepo groupRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<GroupSolutionDTO> findAll() {
         List<GroupSolution> groups = groupRepo.findAll();
-        return groups.stream().map(MyMapper.INSTANCE::mapGroupToGroupDTO)
+        return groups.stream()
+                .map(group -> myMapper.mapGroupToGroupDTO(group))
                 .collect(Collectors.toList());
     }
 
     public String findById(@NonNull Long id) {
-        Optional<GroupSolution> application = groupRepo.findById(id);
-        return application.get().getName();
+        Optional<GroupSolution> group = groupRepo.findById(id);
+        return group.get().getName();
     }
+    
 }

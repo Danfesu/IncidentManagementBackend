@@ -17,9 +17,13 @@ public class AnalystService {
     @Autowired
     AnalystRepo analystRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<AnalystDTO> findAll() {
         List<Analyst> analysts = analystRepo.findAll();
-        return analysts.stream().map(MyMapper.INSTANCE::mapAnalystToAnalystDTO)
+        return analysts.stream()
+                .map(analyst -> myMapper.mapAnalystToAnalystDTO(analyst))
                 .collect(Collectors.toList());
     }
 }

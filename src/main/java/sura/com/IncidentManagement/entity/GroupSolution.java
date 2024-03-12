@@ -34,4 +34,12 @@ public class GroupSolution {
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Analyst> analysts;
+
+    public String getName(){
+        return name;
+    }
+
+    public SolutionManager getSolutionManager(){
+        return solutionManager;
+    }
 }

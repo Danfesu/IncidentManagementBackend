@@ -17,9 +17,13 @@ public class CauseErrorService {
     @Autowired
     CauseErrorRepo causeErrorRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<CauseErrorDTO> findAll() {
         List<CauseError> causeErrors = causeErrorRepo.findAll();
-        return causeErrors.stream().map(MyMapper.INSTANCE::mapCauseErrorToCauseErrorDTO)
+        return causeErrors.stream()
+                .map(causeError -> myMapper.mapCauseErrorToCauseErrorDTO(causeError))
                 .collect(Collectors.toList());
     }
 }

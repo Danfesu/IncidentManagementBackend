@@ -19,9 +19,13 @@ public class ApplicationService {
     @Autowired
     ApplicationRepo applicationRepo;
 
+    @Autowired
+    MyMapper myMapper;
+
     public List<ApplicationDTO> findAll() {
         List<Application> applications = applicationRepo.findAll();
-        return applications.stream().map(MyMapper.INSTANCE::mapApplicationToApplicationDTO)
+        return applications.stream()
+                .map(application -> myMapper.mapApplicationToApplicationDTO(application))
                 .collect(Collectors.toList());
     }
 

@@ -27,4 +27,8 @@ public class SolutionManager {
 
     @OneToMany(mappedBy = "solutionManager", cascade = CascadeType.ALL)
     private List<GroupSolution> groups;
+
+    public String getName(){
+        return name;
+    }
 }
