@@ -8,12 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Analyst {
     @Id
     private Long id;
@@ -28,6 +24,17 @@ public class Analyst {
 
     @OneToMany(mappedBy = "analyst", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public Analyst() {
+    }
+
+    public Analyst(Long id, String name, String email, GroupSolution group, List<Incident> incidents) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.group = group;
+        this.incidents = incidents;
+    }
 
     public GroupSolution getGroup(){
         return group;

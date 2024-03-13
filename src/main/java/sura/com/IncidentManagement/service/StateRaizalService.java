@@ -2,9 +2,11 @@ package sura.com.IncidentManagement.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import sura.com.IncidentManagement.dto.StateRaizalDTO;
@@ -33,5 +35,10 @@ public class StateRaizalService {
         }
 
         return dtos;
+    }
+
+    public StateRaizal findById(@NonNull Long id) {
+        Optional<StateRaizal> stateRaizal = stateRaizalRepo.findById(id);
+        return stateRaizal.get();
     }
 }

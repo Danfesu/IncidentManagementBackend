@@ -10,12 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class ClusteredError {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +25,16 @@ public class ClusteredError {
 
     @OneToMany(mappedBy = "clusteredError", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+
+    public ClusteredError() {
+    }
+
+    public ClusteredError(Long id, String description, Application application, List<Incident> incidents) {
+        this.id = id;
+        this.description = description;
+        this.application = application;
+        this.incidents = incidents;
+    }
 
     public Long getId() {
         return id;

@@ -1,14 +1,17 @@
 package sura.com.IncidentManagement.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import sura.com.IncidentManagement.dto.ActionExecutedDTO;
 import sura.com.IncidentManagement.dto.CauseErrorDTO;
 import sura.com.IncidentManagement.entity.ActionExecuted;
+import sura.com.IncidentManagement.entity.CauseError;
 import sura.com.IncidentManagement.mapper.MyMapper;
 import sura.com.IncidentManagement.repo.ActionExecutedRepo;
 
@@ -33,5 +36,10 @@ public class ActionExecutedService {
         }
 
         return dtos;
+    }
+
+    public ActionExecuted findById(@NonNull Long id) {
+        Optional<ActionExecuted> actionExecuted = actionExecutedRepo.findById(id);
+        return actionExecuted.get();
     }
 }

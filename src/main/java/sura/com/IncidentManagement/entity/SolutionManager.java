@@ -8,12 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class SolutionManager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +19,15 @@ public class SolutionManager {
 
     @OneToMany(mappedBy = "solutionManager", cascade = CascadeType.ALL)
     private List<GroupSolution> groups;
+    
+    public SolutionManager() {
+    }
+
+    public SolutionManager(Long id, String name, List<GroupSolution> groups) {
+        this.id = id;
+        this.name = name;
+        this.groups = groups;
+    }
 
     public Long getId() {
         return id;

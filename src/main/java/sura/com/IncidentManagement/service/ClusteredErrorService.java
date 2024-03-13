@@ -1,6 +1,7 @@
 package sura.com.IncidentManagement.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class ClusteredErrorService {
         return clusteredErrors.stream()
                 .map(clusteredError -> myMapper.mapClusteredErrorToClusteredErrorDTO(clusteredError))
                 .collect(Collectors.toList());
+    }
+
+    public ClusteredError findById(@NonNull Long id) {
+        Optional<ClusteredError> clusteresError = clusteredErrorRepo.findById(id);
+        return clusteresError.get();
     }
 
     public ClusteredErrorDTO save(@NonNull ClusteredError clusteredError) {

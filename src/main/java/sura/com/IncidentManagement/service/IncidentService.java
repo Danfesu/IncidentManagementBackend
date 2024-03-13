@@ -11,8 +11,14 @@ import org.springframework.stereotype.Service;
 
 import sura.com.IncidentManagement.dto.AnalystDTO;
 import sura.com.IncidentManagement.dto.IncidentDTO;
+import sura.com.IncidentManagement.entity.ActionExecuted;
+import sura.com.IncidentManagement.entity.Analyst;
+import sura.com.IncidentManagement.entity.Application;
+import sura.com.IncidentManagement.entity.CauseError;
 import sura.com.IncidentManagement.entity.ClusteredError;
+import sura.com.IncidentManagement.entity.GroupSolution;
 import sura.com.IncidentManagement.entity.Incident;
+import sura.com.IncidentManagement.entity.StateRaizal;
 import sura.com.IncidentManagement.mapper.MyMapper;
 import sura.com.IncidentManagement.repo.ClusteredErrorRepo;
 import sura.com.IncidentManagement.repo.IncidentRepo;
@@ -27,7 +33,22 @@ public class IncidentService {
     ClusteredErrorRepo clusteredErrorRepo;
 
     @Autowired
+    ClusteredErrorService clusteredErrorService;
+
+    @Autowired
     ApplicationService applicationService;
+
+    @Autowired
+    CauseErrorService causeErrorService;
+
+    @Autowired
+    ActionExecutedService actionExecutedService;
+
+    @Autowired
+    AnalystService analystService;
+
+    @Autowired
+    StateRaizalService stateRaizalService;
 
     @Autowired
     MyMapper myMapper;
@@ -49,16 +70,44 @@ public class IncidentService {
     }
 
     public IncidentDTO save(IncidentDTO incidentDTO) {
-        Incident incident = myMapper.mapIncidentDTOToIncident(incidentDTO);
+        Incident incident = mapIncidentDTOToIncident(incidentDTO);
 
         Long clusteredErrorId = incident.getClusteredError().getId();
 
+        
         if(clusteredErrorId == 0){
-            ClusteredError clusteredError = incident.getClusteredError();
-            clusteredErrorRepo.save(clusteredError);
+            ClusteredError cError = incident.getClusteredError();
+            clusteredErrorRepo.save(cError);
         }
-
+        
         return myMapper.mapIncidentToIncidentDTO(incidentRepo.save(incident));
+    }
+
+    private Incident mapIncidentDTOToIncident(IncidentDTO incidentDTO){
+        Incident incident = new Incident();
+
+        incident.setId(incidentDTO.getId());
+        incident.setDiagnosis(incidentDTO.getDiagnosis());
+        incident.setDate(LocalDate.now().minusDays(1));
+        incident.setSolution(incidentDTO.getSolution());
+        incident.setHu_raizal(incidentDTO.getHu_raizal());
+        incident.setConfirmed_operability(incidentDTO.isConfirmed_operability());
+        incident.setAccess_oc(incidentDTO.getAccess_oc());
+        if(incidentDTO.getClusteredError().getId() == 0){
+            ClusteredError clusteredError = new ClusteredError();
+            clusteredError.setId(incidentDTO.getClusteredError().getId());
+            clusteredError.setDescription(incidentDTO.getClusteredError().getDescription());
+            clusteredError.setApplication(applicationService.findAppById(incidentDTO.getClusteredError().getApplication_id()));
+            incident.setClusteredError(clusteredError);
+        }else{
+            incident.setClusteredError(clusteredErrorService.findById(incidentDTO.getClusteredError().getId()));
+        }
+        incident.setCauseError(causeErrorService.findById(incidentDTO.getCauseError().getId()));
+        incident.setActionExecuted(actionExecutedService.findById(incidentDTO.getActionExecuted().getId()));
+        incident.setAnalyst(analystService.findById(incidentDTO.getAnalyst().getId()));
+        incident.setStateRaizal(stateRaizalService.findById(incidentDTO.getStateRaizal().getId()));
+
+        return incident;
     }
 
 

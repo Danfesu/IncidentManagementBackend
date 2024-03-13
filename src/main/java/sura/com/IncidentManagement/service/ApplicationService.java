@@ -51,4 +51,9 @@ public class ApplicationService {
         Optional<Application> application = applicationRepo.findById(id);
         return application.get().getName();
     }
+
+    public Application findAppById(@NonNull Long id) {
+        Optional<Application> application = applicationRepo.findById(id);
+        return application.get();
+    }
 }

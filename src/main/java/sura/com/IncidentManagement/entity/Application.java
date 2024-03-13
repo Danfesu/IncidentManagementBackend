@@ -8,12 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Application {
     
     @Id
@@ -24,6 +20,15 @@ public class Application {
 
     @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
     private List<ClusteredError> clusteredErrors;
+
+    public Application() {
+    }
+
+    public Application(Long id, String name, List<ClusteredError> clusteredErrors) {
+        this.id = id;
+        this.name = name;
+        this.clusteredErrors = clusteredErrors;
+    }
 
     public Long getId() {
         return id;

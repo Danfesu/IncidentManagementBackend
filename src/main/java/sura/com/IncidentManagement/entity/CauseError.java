@@ -8,12 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class CauseError {
 
     @Id
@@ -24,6 +20,15 @@ public class CauseError {
 
     @OneToMany(mappedBy = "causeError", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+    
+    public CauseError() {
+    }
+
+    public CauseError(Long id, String description, List<Incident> incidents) {
+        this.id = id;
+        this.description = description;
+        this.incidents = incidents;
+    }
 
     public Long getId() {
         return id;

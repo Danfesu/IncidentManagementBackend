@@ -8,12 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class StateRaizal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +19,15 @@ public class StateRaizal {
 
     @OneToMany(mappedBy = "stateRaizal", cascade = CascadeType.ALL)
     private List<Incident> incidents;
+    
+    public StateRaizal() {
+    }
+
+    public StateRaizal(Long id, String type, List<Incident> incidents) {
+        this.id = id;
+        this.type = type;
+        this.incidents = incidents;
+    }
 
     public Long getId() {
         return id;
